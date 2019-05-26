@@ -1,5 +1,8 @@
 module.exports = function main(inputs) {
     // write your code here...
+    if(!checkInput(inputs)){
+        return 'Input error';
+    }
     let price = 6;
     price+=priceOfDistance(inputs.distance);
     price+=priceOfParking(inputs.parkTime);
@@ -18,4 +21,14 @@ function priceOfDistance(distance){
 
 function priceOfParking(parkTime){
     return 0.25*parkTime;
+}
+
+function checkInput(inputs){
+        if(isNaN(inputs.distance)||isNaN(inputs.parkTime)){
+        return null;
+    }
+    if(inputs.distance<0||inputs.parkTime<0){
+        return null;
+    }
+    return 1;
 }

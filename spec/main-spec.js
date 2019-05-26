@@ -19,6 +19,12 @@ describe('taxi fee', function () {
         let expected = 13;
         expect(summary).toEqual(expected);
     });
+    it('between 2km and 8km and no parking' , function() {
+        let inputs = {distance:8,parkTime:0};
+        let summary = main(inputs);
+        let expected = 11;
+        expect(summary).toEqual(expected);
+    });
     it('more than 8km and parking' , function() {
         let inputs = {distance:10,parkTime:20};
         let summary = main(inputs);
@@ -31,4 +37,17 @@ describe('taxi fee', function () {
         let expected = 19;
         expect(summary).toEqual(expected);
     });
+    it('distance below zero' , function() {
+        let inputs = {distance:-1,parkTime:0};
+        let summary = main(inputs);
+        let expected = 'Input error';
+        expect(summary).toEqual(expected);
+    });
+    it('park time below zero' , function() {
+        let inputs = {distance:2,parkTime:-1};
+        let summary = main(inputs);
+        let expected = 'Input error';
+        expect(summary).toEqual(expected);
+    });
+
 });
